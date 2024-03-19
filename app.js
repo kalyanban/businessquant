@@ -52,3 +52,14 @@ app.post('/users', (req, res) => {
   });
 });
 
+app.get('/users:id', (req, res) => {
+    connection.query('SELECT * FROM users WHERE USER_ID=id', (err, results) => {
+      if (err) {
+        console.error('Error fetching users:', err);
+        res.status(500);
+        res.send('Error fetching users');
+        return;
+      }
+      res.json(results);
+    });
+  });
